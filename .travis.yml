@@ -7,3 +7,19 @@ before_install:
 
 scripts:
   - docker run scorpionseesh/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  # evn will be on beanstalk
+  evn: "Docker-env" 
+  bucket_name: "elasticbeanstalk-us-west-2-d306476627547"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+    # credential provide krna padega edhr
+  
